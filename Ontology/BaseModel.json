@@ -1,0 +1,16 @@
+{
+    "@context": "dtmi:dtdl:context;2",
+    "@id": "dtmi:digitaltwins:isa95:BaseModel;1",
+    "@type": "Interface",
+    "displayName": "Base ISA-95 model",
+    "description": "Abstract base model for all ISA-95 models",
+    "comment": "Not part of the ISA-95 standard",
+    "contents": [
+        {
+            "@type": "Component",
+            "name": "tags",
+            "schema": "dtmi:digitaltwins:isa95:ext:Tags;1",
+            "comment": "Not part of the ISA-95 standard. Makes querying easier. See https://docs.microsoft.com/en-us/azure/digital-twins/how-to-use-tags"
+        }
+    ]
+  }
