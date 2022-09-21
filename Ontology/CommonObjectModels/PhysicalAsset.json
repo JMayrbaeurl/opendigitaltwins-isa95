@@ -1,0 +1,19 @@
+{
+    "@context": "dtmi:dtdl:context;2",
+    "@id": "dtmi:digitaltwins:isa95:PhysicalAsset;1",
+    "@type": "Interface",
+    "displayName": "Physical Asset",
+    "description": "A physical piece of equipment shall be presented as a physical asset.",
+    "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration − Part 2: Objects and Attributes for - Approved 24 May 2018",
+    "extends": ["dtmi:digitaltwins:isa95:BaseModel;1"],
+    "contents": [
+        {
+            "@type": "Relationship",
+            "name": "definedBy",
+            "displayName": "Defined by",
+            "description": "Physical asset classes supported by this physical asset. This physical asset supports the physical asset class property(s) associated with the physical asset class.",
+            "target": "dtmi:digitaltwins:isa95:PhysicalAssetClass;1",
+            "comment": "Relationship type: Association"
+        }
+    ]
+}
