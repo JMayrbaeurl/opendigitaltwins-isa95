@@ -1,5 +1,0 @@
-{
-    "@context": "dtmi:dtdl:context;2",
-    "@id": "dtmi:digitaltwins:isa95:SpatialDefinition;1",
-    "@type": "Interface"
-  }

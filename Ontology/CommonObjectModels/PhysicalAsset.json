@@ -66,12 +66,11 @@
             "schema": "string"
         },
         {
-            "@type": "Property",
+            "@type": "Component",
             "name": "spatialDefinition",
             "displayName": "Spatial definition",
             "description": "Spatially defines the physical asset as a zero-dimensional point, one-dimensional line, or two-dimensional shape or three dimensional solid.",
-            "schema": "string",
-            "comment": "TODO - Component has to be defined"
+            "schema": "dtmi:digitaltwins:isa95:SpatialDefinition;1"
         },
         {
             "@type": "Property",
@@ -85,8 +84,24 @@
             "name": "physicalocationType",
             "displayName": "Physical location type",
             "description": "Indicates whether the physical location attribute refers to an operational location object or contains a description of the physical location. Mandatory where a physical location attribute is specified. Defined values are operational location: physical location attribute references an operational location; description: physical location attribute contains a description of the physical location, such as a street address.",
-            "schema": "string",
-            "comment": "TODO - Component Operational Location has to be defined"
+            "schema": {
+                "@type": "Enum",
+                "valueSchema": "string",
+                "enumValues": [
+                    {
+                        "name": "operationalLocation",
+                        "enumValue": "operationalLocation",
+                        "displayName": "Operational Location",
+                        "description": "physical location attribute references an operational location"
+                    },
+                    {
+                        "name": "description",
+                        "enumValue": "description",
+                        "displayName": "Description",
+                        "description": " physical location attribute contains a description of the physical location, such as a street address."
+                    }
+                ]
+            }
         }
     ]
 }
