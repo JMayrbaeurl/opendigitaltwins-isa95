@@ -1,0 +1,5 @@
+{
+    "@context": "dtmi:dtdl:context;2",
+    "@id": "dtmi:digitaltwins:isa95:PersonnelClass;1",
+    "@type": "Interface"
+  }
