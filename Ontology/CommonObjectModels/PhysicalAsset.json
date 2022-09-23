@@ -52,6 +52,15 @@
             "schema": "string"
         },
         {
+            "@type": "Relationship",
+            "name": "hierarchyScopeRel",
+            "displayName": "fits hierarchy scope",
+            "description": "Optional relationship to hierarchy.",
+            "comment": "Not part of the Standard Specs.",
+            "target": "dtmi:digitaltwins:isa95:HierarchyScope;1",
+            "maxMultiplicity": 1
+        },
+        {
             "@type": "Property",
             "name": "fixedAssetID",
             "displayName": "Fixed asset ID",

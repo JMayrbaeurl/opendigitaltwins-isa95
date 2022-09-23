@@ -1,5 +1,0 @@
-{
-    "@context": "dtmi:dtdl:context;2",
-    "@id": "dtmi:digitaltwins:isa95:EquipmentClassProperty;1",
-    "@type": "Interface"
-}
