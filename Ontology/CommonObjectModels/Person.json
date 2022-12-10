@@ -87,7 +87,7 @@
         "enumValues": [
           {
             "name": "operationalLocation",
-            "enumValue": "operationalLocation",
+            "enumValue": "Operational Location",
             "displayName": "Operational Location",
             "description": "operational location attribute references an operational location;"
           },

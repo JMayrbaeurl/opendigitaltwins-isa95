@@ -1,43 +1,20 @@
 {
     "@context": "dtmi:dtdl:context;2",
-    "@id": "dtmi:digitaltwins:isa95:MaterialLot;1",
+    "@id": "dtmi:digitaltwins:isa95:MaterialSegmentSpecification;1",
     "@type": "Interface",
-    "displayName": "Material lot",
-    "description": "A uniquely identified specific amount of material, either countable or weighable shall be presented as a material lot. A material lot describes the planned or actual total quantity or amount of material available, its current state, and its specific property values",
+    "displayName": "Material segment specification",
+    "description": "Material resources that are required for a process segment shall be presented as material segment specifications",
     "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration − Part 2: Objects and Attributes for - Approved 24 May 2018",
-    "extends": ["dtmi:digitaltwins:isa95:BaseModel;1"],
+    "extends": [
+        "dtmi:digitaltwins:isa95:BaseModel;1"
+    ],
     "contents": [
         {
             "@type": "Relationship",
-            "name": "isAssembledFrom",
+            "name": "IsAssembledFrom",
             "displayName": "Is assembled from",
-            "description": "This material lot is part of the related object as the whole",
-            "target": "dtmi:digitaltwins:isa95:MaterialLot;1",
-            "comment": "Relationship type: Composition"
-        },
-        {
-            "@type": "Relationship",
-            "name": "hasValuesOf",
-            "displayName": "Has values of",
-            "description": "The material lot property(s) of this material lot",
-            "target": "dtmi:digitaltwins:isa95:MaterialLotProperty;1",
-            "comment": "Relationship type: Composition"
-        },
-        {
-            "@type": "Relationship",
-            "name": "definedBy",
-            "displayName": "Defined by",
-            "description": "The material definition that defines this material lot",
-            "target": "dtmi:digitaltwins:isa95:MaterialDefinition;1",
-            "comment": "Relationship type: Association"
-        },
-        {
-            "@type": "Relationship",
-            "name": "isAssembledFromSublot",
-            "displayName": "Is assembled from",
-            "description": "This material lot is part of the related object as the whole",
-            "target": "dtmi:digitaltwins:isa95:MaterialSublot;1",
-            "comment": "Relationship type: Aggregation"
+            "description": "The related object(s) makes up part of this material segment specification as the whole",
+            "target": "dtmi:digitaltwins:isa95:MaterialSegmentSpecification;1"
         },
         {
             "@type": "Relationship",
@@ -48,10 +25,45 @@
             "target": "dtmi:digitaltwins:isa95:BaseModel;1"
         },
         {
+            "@type": "Relationship",
+            "name": "hasPropertiesOf",
+            "displayName": "has properties of",
+            "description": "The material segment specification property(s) of this material segment specification",
+            "target": "dtmi:digitaltwins:isa95:MaterialSegmentSpecificationProperty;1"
+        },
+        {
+            "@type": "Relationship",
+            "name": "correspondsToClass",
+            "displayName": "Corresponds to",
+            "description": "A cross-model association to element in the material model as explained in Clause 3.3.8. Identifies the associated material class or set of material classes of the specification for a specific process segment",
+            "target": "dtmi:digitaltwins:isa95:MaterialClass;1"
+        },
+        {
+            "@type": "Relationship",
+            "name": "correspondsToDefinition",
+            "displayName": "Corresponds to",
+            "description": "A cross-model association to element in the material model as explained in Clause 3.3.8. Identifies the associated material definition or set of material definition of the specification for a specific process segment",
+            "target": "dtmi:digitaltwins:isa95:MaterialDefinition;1"
+        },
+        {
+            "@type": "Relationship",
+            "name": "correspondsToLot",
+            "displayName": "Corresponds to",
+            "description": "A cross-model association to element in the material model as explained in Clause 3.3.8. Identifies the associated material lot or set of material lot of the specification for a specific process segment",
+            "target": "dtmi:digitaltwins:isa95:MaterialLot;1"
+        },
+        {
+            "@type": "Relationship",
+            "name": "correspondsToSublot",
+            "displayName": "Corresponds to",
+            "description": "A cross-model association to element in the material model as explained in Clause 3.3.8. Identifies the associated material sublot or set of material sublot of the specification for a specific process segment. Typically, either a material class or material definition is specified",
+            "target": "dtmi:digitaltwins:isa95:MaterialSublot;1"
+        },
+        {
             "@type": "Component",
             "name": "description",
             "displayName": "Description",
-            "description": "Additional information about the material definition",
+            "description": "Additional information about the process segment",
             "schema": "dtmi:digitaltwins:isa95:LangStringSet;1"
         },
         {
@@ -81,7 +93,7 @@
             "@type": "Property",
             "name": "storageLocation",
             "displayName": "Storage location",
-            "description": "Identifies the storage location of the material lot.",
+            "description": "Identifies the storage location of  the material resource(s) specified by this material segment specification",
             "schema": "string",
             "writable": true
         },
@@ -89,7 +101,7 @@
             "@type": "Property",
             "name": "storageLocationType",
             "displayName": "Storage location type",
-            "description": "Indicates whether the storage location attribute refers to anoperational location, equipmentor physical asset object, or contains a description of the storage location.",
+            "description": "Indicates whether the storage location attribute refers to an operational location, equipment or physical asset object, or contains a description of the storage location",
             "comment": "Mandatory where a storage location is specified",
             "schema": {
                 "@type": "Enum",
@@ -166,46 +178,62 @@
         },
         {
             "@type": "Property",
-            "name": "status",
-            "displayName": "Status",
-            "description": "Status of the material lot in manufacturing operations. Values defined by implementation",
-            "schema": "string",
-            "writable": true
-        },
-        {
-            "@type": "Property",
-            "name": "disposition",
-            "displayName": "Disposition",
-            "writable": true,
-            "description": "Planning and logistics disposition of a material lot or assembly of material lots. ",
+            "name": "materialUse",
+            "displayName": "Material use",
+            "description": "Defines the expected use of the material class, material definition, material lot, or material sublot in the context of the process segment.",
             "schema": {
                 "@type": "Enum",
                 "valueSchema": "string",
                 "enumValues": [
                     {
-                        "name": "planned",
-                        "enumValue": "Planned",
-                        "description": "a material lot that does not yet physically exist, is assigned to an operations request (segment requirement) or work request (Part 4 object) or job order (Part 4 object)"
+                        "name": "consumable",
+                        "displayName": "Consumable",
+                        "enumValue": "Consumable"
                     },
                     {
-                        "name": "inProcess",
-                        "enumValue": "In process",
-                        "description": "the material lot is in the process of being worked on"
+                        "name": "materialConsumed",
+                        "displayName": "Material consumed",
+                        "enumValue": "Material consumed"
                     },
                     {
-                        "name": "restricted",
-                        "enumValue": "Restricted",
-                        "description": "a material lot is not permitted for normal use due to a restriction condition"
+                        "name": "materialProduced",
+                        "displayName": "Material produced",
+                        "enumValue": "Material produced"
                     },
                     {
-                        "name": "unrestricted",
-                        "enumValue": "Unrestricted",
-                        "description": "material lot is permitted for normal use without restriction"
+                        "name": "byProductProduced",
+                        "displayName": "By-Product produced",
+                        "enumValue": "By-Product produced"
                     },
                     {
-                        "name": "closed",
-                        "enumValue": "Closed",
-                        "description": "material lot has been reconciled as completely consumed, sold or disposed of"
+                        "name": "coProductProduced",
+                        "displayName": "Co-Product produced",
+                        "enumValue": "Co-Product produced"
+                    },
+                    {
+                        "name": "yieldProduced",
+                        "displayName": "Yield produced",
+                        "enumValue": "Yield produced"
+                    },
+                    {
+                        "name": "destructiveSample",
+                        "displayName": "Destructive sample",
+                        "enumValue": "Destructive sample"
+                    },
+                    {
+                        "name": "returnedSample",
+                        "displayName": "Returned sample",
+                        "enumValue": "Returned sample"
+                    },
+                    {
+                        "name": "retainedSample",
+                        "displayName": "Retained sample",
+                        "enumValue": "Retained sample"
+                    },
+                    {
+                        "name": "inventoried",
+                        "displayName": "Inventoried",
+                        "enumValue": "Inventoried"
                     }
                 ]
             }
@@ -215,7 +243,7 @@
             "name": "quantity",
             "displayName": "Quantity",
             "schema": "double",
-            "description": "The quantity of the material lot. ",
+            "description": "Specifies the personnel resource required for the parent process segment",
             "writable": true
         },
         {
