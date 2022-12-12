@@ -5,7 +5,10 @@
     "displayName": "Material lot",
     "description": "A uniquely identified specific amount of material, either countable or weighable shall be presented as a material lot. A material lot describes the planned or actual total quantity or amount of material available, its current state, and its specific property values",
     "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration − Part 2: Objects and Attributes for - Approved 24 May 2018",
-    "extends": ["dtmi:digitaltwins:isa95:BaseModel;1"],
+    "extends": [
+        "dtmi:digitaltwins:isa95:BaseModel;1",
+        "dtmi:digitaltwins:isa95:TestableObject;1"
+    ],
     "contents": [
         {
             "@type": "Relationship",
@@ -38,14 +41,6 @@
             "description": "This material lot is part of the related object as the whole",
             "target": "dtmi:digitaltwins:isa95:MaterialSublot;1",
             "comment": "Relationship type: Aggregation"
-        },
-        {
-            "@type": "Relationship",
-            "name": "specifies",
-            "displayName": "Specifies",
-            "description": "The test specification(s) used to evaluate this testable object.",
-            "comment": "TODO",
-            "target": "dtmi:digitaltwins:isa95:BaseModel;1"
         },
         {
             "@type": "Component",

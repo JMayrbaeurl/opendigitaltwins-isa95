@@ -21,8 +21,7 @@
             "name": "specifies",
             "displayName": "Specifies",
             "description": "The test specification(s) used to evaluate this testable object.",
-            "comment": "TODO",
-            "target": "dtmi:digitaltwins:isa95:BaseModel;1"
+            "target": "dtmi:digitaltwins:isa95:TestSpecification;1"
         },
         {
             "@type": "Relationship",

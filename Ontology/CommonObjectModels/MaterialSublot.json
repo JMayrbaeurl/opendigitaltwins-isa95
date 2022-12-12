@@ -5,7 +5,10 @@
     "displayName": "Material sublot",
     "description": "Each separately identifiable quantity of the same material lot shall be presented as a material sublot. A material lot may be stored in separately identifiable quantities. All material sublots are part of the same material lot, so they have the material lot’s property values. A material sublot may be just a single item",
     "comment": "According to ANSI/ISA-95.00.02-2018 Enterprise-Control System Integration − Part 2: Objects and Attributes for - Approved 24 May 2018",
-    "extends": ["dtmi:digitaltwins:isa95:BaseModel;1"],
+    "extends": [
+        "dtmi:digitaltwins:isa95:BaseModel;1",
+        "dtmi:digitaltwins:isa95:TestableObject;1"
+    ],
     "contents": [
         {
             "@type": "Relationship",
@@ -37,14 +40,6 @@
             "description": "The related object(s) makes up part of this material sublot as the whole.",
             "target": "dtmi:digitaltwins:isa95:MaterialLot;1",
             "comment": "Relationship type: Aggregation"
-        },
-        {
-            "@type": "Relationship",
-            "name": "specifies",
-            "displayName": "Specifies",
-            "description": "The test specification(s) used to evaluate this testable object.",
-            "comment": "TODO",
-            "target": "dtmi:digitaltwins:isa95:BaseModel;1"
         },
         {
             "@type": "Component",
